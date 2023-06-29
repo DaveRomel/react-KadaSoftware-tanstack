@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "HTMLHint.vscode-htmlhint",
+    "xabikos.JavaScriptSnippets",
+    "techer.open-in-browser",
+    "christian-kohler.path-intellisense"
+  ]
+}
