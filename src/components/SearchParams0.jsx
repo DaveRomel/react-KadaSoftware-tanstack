@@ -1,8 +1,6 @@
 // Dependencies
 //import React from 'react';
-import { useState, /*useEffect*/ } from 'react';
-import {useQuery} from '@tanstack/react-query';
-import {fetchSearch} from '../api/fetchSearch';
+import { useState, useEffect } from 'react';
 
 // Components
 //import { Pet } from './Pet'
@@ -15,64 +13,46 @@ import {useBreedList} from '../hooks/useBreedList';
 const Animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 export const SearchParams = () => {
-/*
+
   const [location, setLocation] = useState('');
   const [animal, setAnimal] = useState('');
   const [breed, setBreed] = useState('');
-*/
-  const [requestParams, setRequestParams] = useState({
-    location: '',
-    animal: '',
-    breed: '',
-  });
-  const [animal, setAnimal] = useState('');
-  //const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState([]);
   //const breeds = [];
   //const breeds = ['croquetas', 'semillas', 'carne'];
   const [breeds] = useBreedList(animal);
-/*
+
   useEffect(() => {
     requestPets();
   }, []); // eslint-disable-line
 
-  async function requestPets() {
-    const res = await fetch (
-      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
-    );
+    async function requestPets() {
+      const res = await fetch (
+        `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+      );
 
-    const json = await res.json();
+      const json = await res.json();
 
-    setPets(json.pets);
-  }
+      setPets(json.pets);
+    }
 
   //console.log('perts: ', pets);
-*/
-  const results = useQuery(['search', requestParams], fetchSearch);
-  const pets = results?.data?.pets ?? [];
 
   return (
     <div className="search-params">
       <form onSubmit={ (e) => {
         e.preventDefault();
-        //requestPets();
-        const formData = new FormData(e.target);
-        const obj = {
-          animal: formData.get('animal') ?? '',
-          location: formData.get('location') ?? '',
-          breed: formData.get('breed') ?? '',
-        };
-        setRequestParams(obj);
-        }}
-      >
+        requestPets();
+      }}
+    >
 
         <label htmlFor="location">
           Location
           <input
             id="location"
-
+            value={location}
             placeholder="Location"
-            name="location"
-
+            onChange={(e) => setLocation(e.target.value)}
           />
         </label>
 
@@ -80,10 +60,9 @@ export const SearchParams = () => {
           Animal
           <select
             id="animal"
-
-            name="animal"
+            value={animal}
             onChange={ (e) => {setAnimal(e.target.value);
-            //setBreed('');
+            setBreed('');
             }}
           >
             <option>
@@ -102,9 +81,8 @@ export const SearchParams = () => {
           <select
             disabled={!breeds?.length}
             id="breed"
-
-            name="breed"
-
+            value={breed}
+            onChange={(e) => setBreed(e.target.value)}
           >
             <option />
             {breeds?.map((breed) => (
