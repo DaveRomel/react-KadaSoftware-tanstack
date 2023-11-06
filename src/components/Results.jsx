@@ -8,10 +8,10 @@ export const Results = ({pets}) => (
 		) : (
 			pets.map((pet) => (
 				<Pet
-					id={pet.id}
 					key={pet.id}
-					images={pet.images}
+					id={pet.id}
 					location = {`${pet.city}, ${pet.state}`}
+					images={pet.images}
 					name = {pet.name}
 					animal={pet.animal}
 					breed={pet.breed}

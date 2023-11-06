@@ -1,6 +1,6 @@
 // Dependencies
 //import React from 'react';
-import { useState, /*useEffect*/ } from 'react';
+import {useState, /*useEffect*/ } from 'react';
 import {useQuery} from '@tanstack/react-query';
 import {fetchSearch} from '../api/fetchSearch';
 
@@ -82,7 +82,7 @@ export const SearchParams = () => {
             id="animal"
 
             name="animal"
-            onChange={ (e) => {setAnimal(e.target.value);
+            onChange={ (e) => {setAnimal(e.target.value)
             //setBreed('');
             }}
           >
